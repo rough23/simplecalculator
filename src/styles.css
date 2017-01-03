@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+body {
+  margin: 0px;
+  padding: 60px 20px 20px 20px;
+  background-color: #444;
+  background-image: url('img/background.jpg');
+  background-size: cover;
+  background-attachment: scroll;
+}
+
+.headline-50 {
+  font: 400 50px/1.5 'Pacifico', Helvetica, sans-serif;
+  color: #eeeeee;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1), 7px 7px 0px rgba(0, 0, 0, 0.05);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headline-25 {
+  font: 400 25px/1.5 'Pacifico', Helvetica, sans-serif;
+  color: #eeeeee;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1), 7px 7px 0px rgba(0, 0, 0, 0.05);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

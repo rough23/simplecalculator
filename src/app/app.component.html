@@ -1,3 +1,91 @@
-<h1>
-  {{title}}
-</h1>
+<div class="col-md-offset-2 col-md-4" style="margin-bottom: 50px;">
+  <div class="headline-50" style="margin-bottom: 20px;">
+    Simple calculator
+  </div>
+  <div class="headline-25">
+    Created in Angular2
+  </div>
+</div>
+<div class="col-md-4">
+  <md-card class="calculator">
+    <div class="row" style="margin-top: 10px; margin-bottom: 25px;">
+      <div class="col-md-12">
+        <textarea #calcHist rows="1" cols="50" class="calculator-history" readonly>
+          {{history}}
+        </textarea>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 10px; margin-bottom: 25px;">
+      <div class="col-md-12">
+        <input type="text" class="calculator-display" readonly [value]="value">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-operator-button" (click)="onOperatorClick(OPERATOR.NEGATION)">+/−</button>
+      </div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-function-button" (click)="onFunctionClick(FUNCTION.DELETE)">DEL</button>
+      </div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-function-button" (click)="onFunctionClick(FUNCTION.CLEAR)">AC</button>
+      </div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-operator-button" (click)="onOperatorClick(OPERATOR.DIVISION)">÷</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-number-button" (click)="onNumberClick('7')">7</button>
+      </div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-number-button" (click)="onNumberClick('8')">8</button>
+      </div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-number-button" (click)="onNumberClick('9')">9</button>
+      </div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-operator-button" (click)="onOperatorClick(OPERATOR.MULTIPLICATION)">×</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-number-button" (click)="onNumberClick('4')">4</button>
+      </div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-number-button" (click)="onNumberClick('5')">5</button>
+      </div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-number-button" (click)="onNumberClick('6')">6</button>
+      </div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-operator-button" (click)="onOperatorClick(OPERATOR.SUBTRACTION)">−</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-number-button" (click)="onNumberClick('1')">1</button>
+      </div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-number-button" (click)="onNumberClick('2')">2</button>
+      </div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-number-button" (click)="onNumberClick('3')">3</button>
+      </div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-operator-button" (click)="onOperatorClick(OPERATOR.ADDITION)">+</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-number-button" (click)="onNumberClick('0')">0</button>
+      </div>
+      <div class="col-md-3" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-number-button" (click)="onNumberClick('.')">.</button>
+      </div>
+      <div class="col-md-6" style="margin-bottom: 10px;">
+        <button md-raised-button class="calculator-equals-button" (click)="onOperatorClick(OPERATOR.EQUALS)">=</button>
+      </div>
+    </div>
+  </md-card>
+</div>
