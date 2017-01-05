@@ -1,7 +1,7 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
 
 declare function require(path: string): any;
-var BigNumber = require('bignumber.js/bignumber.js');
+var BigNumber = require('bignumber.js/bignumber.min.js');
 
 enum NUMBER {
   ZERO = 96,
@@ -46,10 +46,6 @@ export class AppComponent {
   usedOperator: OPERATOR = null;
   isProcessed: boolean = false;
   isError: boolean = false;
-
-  constructor() {
-
-  }
 
   @HostListener('window:keydown', ['$event'])
   onKeyDown(event: any) {
