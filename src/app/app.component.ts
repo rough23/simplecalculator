@@ -1,5 +1,8 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
 
+declare function require(path: string): any;
+var BigNumber = require('bignumber.js/bignumber.js');
+
 enum NUMBER {
   ZERO = 96,
   ONE = 97,
@@ -39,25 +42,29 @@ export class AppComponent {
   FUNCTION = FUNCTION;
   value: string = '0';
   history: string = '';
-  processedValue: number = null;
+  processedValue: any = null;
   usedOperator: OPERATOR = null;
   isProcessed: boolean = false;
   isError: boolean = false;
 
+  constructor() {
+
+  }
+
   @HostListener('window:keydown', ['$event'])
   onKeyDown(event: any) {
     event.preventDefault();
-    var num = NUMBER[event.keyCode];
+    let num = NUMBER[event.keyCode];
     if (num != null) {
       this.onNumberClick(event.key);
       return;
     }
-    var op = OPERATOR[OPERATOR[event.keyCode]];
+    let op = OPERATOR[OPERATOR[event.keyCode]];
     if (op != null) {
       this.onOperatorClick(op);
       return;
     }
-    var func = FUNCTION[FUNCTION[event.keyCode]];
+    let func = FUNCTION[FUNCTION[event.keyCode]];
     if (func != null) {
       this.onFunctionClick(func);
     }
@@ -102,7 +109,7 @@ export class AppComponent {
     switch (op) {
       case OPERATOR.NEGATION:
         if (!this.isProcessed || this.usedOperator == null) {
-          this.value = String(-parseFloat(this.value));
+          this.value = String(new BigNumber(this.value).neg());
         }
         break;
       case OPERATOR.EQUALS:
@@ -117,7 +124,7 @@ export class AppComponent {
         if (!this.isProcessed) {
           this.getResult();
         }
-        this.processedValue = parseFloat(this.value);
+        this.processedValue = new BigNumber(this.value);
         this.usedOperator = op;
         this.isProcessed = true;
         break;
@@ -138,24 +145,24 @@ export class AppComponent {
 
   getResult() {
     if (this.usedOperator != null && this.processedValue != null) {
-      var res: number = null;
-      var op: string = null;
-      var actualValue = parseFloat(this.value);
+      let res: any = null;
+      let op: string = null;
+      let actualValue = new BigNumber(this.value);
       switch (this.usedOperator) {
         case OPERATOR.ADDITION:
-          res = this.processedValue + actualValue;
+          res = this.processedValue.plus(actualValue);
           op = ' + ';
           break;
         case OPERATOR.SUBTRACTION:
-          res = this.processedValue - actualValue;
+          res = this.processedValue.minus(actualValue);
           op = ' − ';
           break;
         case OPERATOR.MULTIPLICATION:
-          res = this.processedValue * actualValue;
+          res = this.processedValue.times(actualValue);
           op = ' × ';
           break;
         case OPERATOR.DIVISION:
-          res = this.processedValue / actualValue;
+          res = this.processedValue.dividedBy(actualValue);
           op = ' ÷ ';
           break;
         default:
@@ -191,15 +198,15 @@ export class AppComponent {
     this.isError = false;
   }
 
-  writeHistory(op: string, res: number) {
-    var firstValue: string;
-    var secondValue: string;
-    if (this.processedValue < 0) {
+  writeHistory(op: string, res: any) {
+    let firstValue: string;
+    let secondValue: string;
+    if (this.processedValue.isNegative()) {
       firstValue = '(' + this.processedValue + ')';
     } else {
       firstValue = String(this.processedValue);
     }
-    if (parseFloat(this.value) < 0) {
+    if (new BigNumber(this.value).isNegative()) {
       secondValue = '(' + this.value + ')';
     } else {
       secondValue = this.value;
